@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import router from "./router";
+import router from "./router/router";
 import store from "./store";
 import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
@@ -57,7 +57,9 @@ const requireComponent = require.context(
 
 requireComponent.keys().forEach(fileName => {
   // 获取组件配置
-  const componentConfig = requireComponent(fileName)
+  console.log('TAG', 'fileName = '+fileName);
+  const componentConfig = requireComponent(fileName);
+  console.log('TAG', 'componentConfig name = '+componentConfig.default.name);
 
   // 获取组件的 PascalCase 命名
   const componentName = upperFirst(
