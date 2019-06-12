@@ -5,6 +5,14 @@ import store from "./store";
 import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
 import bus from "./utils/eventBus";
+// 引入自定义指令
+import time from "../custom/directive/time";
+// 使用自定义指令
+Vue.use(time);
+// 引入通过prototype自定义的组件
+import MyPrototype from "../custom/prototype";
+// 使用
+Vue.use(MyPrototype);
 
 Vue.prototype.$bus = bus; // 设置全局的EventBus
 Vue.config.productionTip = false;

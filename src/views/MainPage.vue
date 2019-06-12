@@ -31,7 +31,7 @@
 
             <button @click="showCal">{{btnMsg}}</button><br/><br/>
 
-            <div id="app" v-show="isShowCal">
+            <div id="main_cula" v-show="isShowCal">
                 <h1>学科计分器</h1>
                 <div v-for="subject in results" class="subject">
                     <input v-model="subject.marks" />
@@ -308,7 +308,7 @@
             linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
     }
 
-    #app {
+    #main_cula {
         background: white;
         border: 0 none;
         border-radius: 3px;
