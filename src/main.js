@@ -13,13 +13,23 @@ Vue.use(time);
 import MyPrototype from "../custom/prototype";
 // 使用
 Vue.use(MyPrototype);
+// 引入element-ui
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import locale from 'element-ui/lib/locale/lang/en' // lang i18n
+
+// 获取Vue的当前版本
+console.log('garyhu', 'vue version :: '+Vue.version);
+
+// set ElementUI lang to EN
+Vue.use(ElementUI, { locale });
 
 Vue.prototype.$bus = bus; // 设置全局的EventBus
 Vue.config.productionTip = false;
 Vue.prototype.app2 = new Vue(); // 设置全局的vue实例相当于EventBus
 Vue.config.devtools = false;
 Vue.config.silent = true; // 取消所有的日志和警告
-// 自定义全局的键盘
+// 自定义全局的键位别名
 Vue.config.keyCodes = {
   v: 86,
   f1: 112,
@@ -88,17 +98,17 @@ requireComponent.keys().forEach(fileName => {
 });
 
 //动态设置页面标题
-router.beforeEach((to, _from, next) => {
-  if(to.path === "/login"){
+router.beforeEach((to, from, next) => {
+  if (to.path === "/login") {
     next();
-  }else {
+  } else {
     if (window.localStorage.getItem("token")) {
       window.document.title = to.meta.title;
       next();
     } else {
       let path = to.path;
-      console.log('tag', 'currentPath ==> '+path)
-      store.commit("setRouterPath",path);
+      console.log("tag", "currentPath ==> " + path);
+      store.commit("setRouterPath", path);
       next("/login");
     }
   }
@@ -108,10 +118,10 @@ router.beforeEach((to, _from, next) => {
 });
 
 // 长页面跳转自动返回顶端
-router.afterEach((_to, _from, next) => {
-  window.scrollTo(0, 0);
-  next();
-});
+// router.afterEach((to, from, next) => {
+//   window.scrollTo(0, 0);
+//   next();
+// });
 
 // 组合使用 beforeEach 与 afterEach，还可以实现：从一个页面跳转到另一个页面时，出现 Loading 动画，
 // 当新页面加载后，再结束动画。

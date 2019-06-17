@@ -5,11 +5,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    routerPath: ""
+    routerPath: "",
+    username: ""
   },
   mutations: {
-    setRouterPath(state,path){
+    setRouterPath(state, path){
       state.routerPath = path;
+    },
+
+    setUsername(state, name){
+      state.username = name;
     }
   },
   actions: {}

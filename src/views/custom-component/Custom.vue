@@ -3,9 +3,9 @@
         <div id="custom-title">
             <p>自定义模式</p>
             <div class="custom-tab">
-                <div class="tab-sub tab-sub-1" @click="tabClick(1)">自定义指令</div>
+                <div :class="tab1Class" @click="tabClick(1)">自定义指令</div>
                 <div class="tab-line"></div>
-                <div class="tab-sub tab-sub-2" @click="tabClick(2)">prototype实现自定义组件</div>
+                <div :class="tab2Class" @click="tabClick(2)">prototype实现自定义组件</div>
             </div>
         </div>
     
@@ -16,16 +16,28 @@
 export default {
     data() {
         return {
-            
+            tab1Class: "tab-sub tab-sub-1",
+            tab2Class: "tab-sub tab-sub-2"
         }
+    },
+    mounted() {
+        this.$router.push({name: "my-directive"});
+        this.tab1Class = "tab-sub-active tab-sub-1";
     },
     methods: {
         tabClick(index) {
+            this.resetStyle();
             if(index == 1){
-                this.$router.push({name: "my-directive"});
+                this.tab1Class = "tab-sub-active tab-sub-1";
+                this.$router.replace({name: "my-directive"});
             }else if(index == 2){
-                this.$router.push({name: "my-message"});
+                this.tab2Class = "tab-sub-active tab-sub-2";
+                this.$router.replace({name: "my-message"});
             }
+        },
+        resetStyle() {
+            this.tab1Class = "tab-sub tab-sub-1";
+            this.tab2Class = "tab-sub tab-sub-2";
         }
     }
 }
@@ -68,7 +80,10 @@ export default {
         color: #FFF;
     }
 
-    .tab-sub:active {
+    .tab-sub-active {
+        flex: 1;
+        height: 80px;
+        line-height: 80px;
         background-color: rgba(44, 43, 41, 1);
         color: #FFF;
     }
@@ -84,6 +99,10 @@ export default {
         background-color: #fff;
         height: 80px;
         width: 1px;
+    }
+
+    .tab-sub-1 {
+        border-bottom-left-radius: 5px;
     }
 
     .tab-sub-2 {

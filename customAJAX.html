@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>测试CSS滚屏效果</title>
+    <style>
+        html,p,div {
+          margin: 0px;
+          padding: 0px;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <p>自定义的ajax</p>
+      <p>使用Promise封装原生的ajax</p>
+      <p id="content" data-text="hello world!"></p>
+    </div>
+    <button id="btn">请求数据</button>
+
+    <audio controls> 
+
+    </audio>
+
+    <blockquote cite="https://codingcoach.io/">
+      Coding Coach is a free, open-source platform which aims to connect software developers and mentors all over the world. It is built by a group of talented and passionate developers, designers, engineers, and humans who want to make the engineering world a better place to collaborate. This project was born out of a desire to provide a platform to connect mentors and mentees throughout the world at no cost. Coding Coach is created by the people, for the people.
+    </blockquote>
+    
+  </body>
+
+  <script>
+    function myAJAX(params) {
+      let promise = new Promise((resolve,reject) => {
+        let request;
+        if(window.XMLHttpRequest){
+          request = new XMLHttpRequest();
+        }else {
+          request = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        request.onreadystatechange = () => {
+          if(request.readyState === 4){
+            // 判断响应结果:
+            if (request.status === 200) {
+                // 成功，通过responseText拿到响应的文本:
+                resolve(request.responseText);
+            } else {
+                // 失败，根据响应码判断失败原因:
+                reject(request.status);
+            }
+          }else {
+            // TODO 请求还在继续
+          }
+        }
+
+        // 只支持GET和POST请求
+        if(params.method !== "GET" && params.method !== "POST"){
+          reject("不支持该请求");
+        }else {
+          request.open(params.method,params.url);
+          request.setRequestHeader("Content-type","application/json");
+          request.send(params.data);
+        }
+      });
+
+      return promise;
+    }
+
+    var pp = document.getElementById("content");
+
+    var eve = new CustomEvent("myHandler",{detail: pp.dataset.text});
+
+    pp.addEventListener("myHandler",myAJAX);
+
+    document.getElementById("btn").onclick = () => {
+      pp.dispatch(eve);
+    }
+
+    let url = document.location.toString();
+
+    alert(url);
+  </script>
+</html>

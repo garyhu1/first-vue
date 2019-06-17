@@ -4,7 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
-    <router-view />
+    <router-view style="width: 100%;"/>
   </div>
 </template>
 
@@ -21,6 +21,8 @@ html,body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  width: 100%;
+  height: 100%;
 }
 #nav {
   padding: 30px;

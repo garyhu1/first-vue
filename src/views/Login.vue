@@ -34,6 +34,7 @@ import { setTimeout } from 'timers';
                 if(this.username && this.username === "garyhu" 
                 && this.password && this.password === "123456"){
                     window.localStorage.setItem("token",this.token);
+                    window.localStorage.setItem("username",this.username);
                     console.log('garyhu', 'path = '+this.$store.state.routerPath);
                     this.$router.replace(this.$store.state.routerPath)
                 }else {

@@ -2,7 +2,7 @@ export default [
   {
     path: "/custom",
     name: "custom",
-    component: resolve => require(["../../views/Custom.vue"],resolve),
+    component: resolve => require(["../../views/custom-component/Custom.vue"], resolve),
     meta: {
       title: "自定义模式"
     },
@@ -10,7 +10,7 @@ export default [
       {
         path: "my-directive",
         name: "my-directive",
-        component: () => import("../../views/MyDirective.vue"),
+        component: () => import("../../views/custom-component/MyDirective.vue"),
         meta: {
           title: "自定义指令"
         }
@@ -18,7 +18,7 @@ export default [
       {
         path: "my-message",
         name: "my-message",
-        component: () => import("../../views/MyMessage.vue"),
+        component: () => import("../../views/custom-component/MyMessage.vue"),
         meta: {
           title: "自定义message"
         }

@@ -131,7 +131,6 @@
             next();
         },
         mounted() {
-
             // 测试打印自定义的属性
             console.log('garyhu', 'vue option :: '+this.$options.customO);
             console.log('garyhu', 'vue parent :: '+this.$parent);
@@ -195,6 +194,7 @@
             showV(s) {
                 console.log('garyhu', s)
                 this.codes = s.keyCode;
+                // console.log('garyhu', s)
             },
             displayResult(){
                 this.success();
