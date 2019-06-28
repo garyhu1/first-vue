@@ -103,7 +103,9 @@ router.beforeEach((to, from, next) => {
     next();
   } else {
     if (window.localStorage.getItem("token")) {
-      window.document.title = to.meta.title;
+      if (to.meta.title) {
+        window.document.title = to.meta.title;
+      }
       next();
     } else {
       let path = to.path;
@@ -118,10 +120,24 @@ router.beforeEach((to, from, next) => {
 });
 
 // 长页面跳转自动返回顶端
-// router.afterEach((to, from, next) => {
-//   window.scrollTo(0, 0);
-//   next();
-// });
+router.afterEach((to, from) => {
+  console.log('tag', '跳转');
+  let bodySrcollTop = document.body.scrollTop
+  if (bodySrcollTop !== 0) {
+    document.body.scrollTop = 0;
+    return
+  }
+  let docSrcollTop = document.documentElement.scrollTop
+  if (docSrcollTop !== 0) {
+    document.documentElement.scrollTop = 0;
+  }
+});
+
+let logger = function() {return 10;};
+
+let d = [logger()];
+
+console.log('TAG', 'd ==> '+d);
 
 // 组合使用 beforeEach 与 afterEach，还可以实现：从一个页面跳转到另一个页面时，出现 Loading 动画，
 // 当新页面加载后，再结束动画。
