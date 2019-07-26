@@ -3,7 +3,7 @@ export default [
   {
     path: "/",
     name: "main",
-    component: resolve => require(["../../views/MainPage.vue"], resolve),
+    component: r => require.ensure([], () => r(require('../../views/MainPage.vue')), 'index'),
     meta: {
       title: "garyhu"
     },

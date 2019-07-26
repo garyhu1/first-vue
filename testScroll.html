@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>测试CSS滚屏效果</title>
+    <style>
+        html,p,div {
+          margin: 0px;
+          padding: 0px;
+        }
+        #container {
+          width: 100px;
+          height: 100px;
+          background-color: aquamarine;
+          overflow: hidden;
+        }
+
+        p:first-child {
+            width: auto;
+            word-break: keep-all;
+            animation: move var(--duration) linear infinite;
+	          min-width: 100%;
+        }
+
+        @keyframes move {
+          0%, 20%{
+            transform: translateX(0px);
+          }
+          80%,100%{
+            transform: translateX(calc(-100% + 100px));
+          }
+        }
+
+        span:active {
+          color: red
+        }
+
+        span:nth-of-type(odd) {
+          color: antiquewhite
+        }
+
+        span:nth-of-type(1) {
+          color:brown
+        }
+
+        /* 所有未被点击过的链接样式 */
+        a:link {
+          color:chartreuse
+        }
+        /* 打开过后的链接样式 */
+        a:visited {
+          color: cornflowerblue
+        }
+        /* 只适用p元素，设置第一个字的样式 */
+        p::first-letter {
+          color: darkblue;
+          font-size: 20px;
+        }
+        /* 只适用p元素，设置第一行字的样式 */
+        p::first-line {
+          font-style:italic;
+          font-weight: bold;
+        }
+
+        p~a {
+          display: block;
+          color: rgb(237, 237, 241);
+          width: 200px;
+          height: 50px;
+          text-align: center;
+          line-height: 50px;
+          background: -webkit-linear-gradient(left bottom,rgba(255,0,0,1),yellow,blue); /* Safari和chrome 5.1-6.0 */
+          background: -o-linear-gradient(right,red,yellow,blue); /* Opera 11.1-12.0 */ 
+          background: -moz-linear-gradient(top,red,yellow,blue); /* Firefox 3.6-15 */
+          background: linear-gradient(left top,red,yellow,blue); /* 标准语法 */
+        }
+
+        #ff {
+          background-color: rgb(16, 70, 117);
+          height: 100px;
+          width: 600px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+        }
+
+        #ff a {
+          position: relative;
+          display: inline-block;
+          outline: none;
+          text-decoration: none;
+          color: #fff;
+          font-size: 32px;
+          padding: 5px 10px;
+        }
+
+        #ff a:hover::before, #ff a:hover::after { position: absolute; }
+        #ff a:hover::before { 
+          content: "["; 
+          left: -20px; 
+          animation: myleft 0.3s ease-in-out
+        }
+        #ff a:hover::after { 
+          content: "]"; 
+          right:  -20px; 
+          animation: myright 0.2s ease-in-out
+        }
+
+        @keyframes myleft {
+          from {left : 0;opacity: 0;}
+          to {left : -20px;opacity: 1;}
+        }
+
+        @keyframes myright {
+          from {right : 0;opacity: 0;}
+          to {right : -20px;opacity: 1;}
+        }
+
+        .demo {
+          height: 20px;
+        }
+
+        .demo::after {
+          content: "";
+          display: inline-block;
+          width: 0px;
+          height: 0px;
+          border: 8px solid transparent;
+          border-left: 8px solid #AFABAB ;
+          position: relative;
+          top: 2px;
+          left: 5px;
+        }
+
+        .sj {
+          width: 0px;
+          height: 0px;
+          border-width: 8px;
+          border-style: solid;
+          border-color: #AFABAB red green blue;
+        }
+
+        .left,.right{
+            min-height: 40px;
+            position: relative;
+            display: table;
+            text-align: center;
+            border-radius: 7px;
+            background-color: #9EEA6A;
+            border: 1px solid #736262;
+        }
+        .right{      /*使左右的对话框分开*/
+            top: 40px;
+            left: 60px;
+        }
+        .left > p,.right > p{    /*使内容居中*/
+            display: table-cell;
+            vertical-align: middle;
+            padding: 0 10px;
+        }
+        .left:before,.right:after,.left:after,.right:before{   /*用伪类写出小三角形*/
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border: 8px solid transparent;
+            position: absolute;
+            top: 11px;
+        }
+        /*分别给左右两边的小三角形定位*/
+        .left:before{    
+            border-right: 8px solid #9EEA6A;
+            left: -16px;
+        }
+        .left:after{      /*左边对话框小三角形的边框样式*/
+            border-right: 8px solid #736262;
+            left: -17px;
+            z-index: -1;
+        }
+        .right:after{    
+            border-left: 8px solid #9EEA6A;
+            right: -16px;
+        }
+        .right:before{    /*右边对话框小三角形的边框样式*/
+            border-left: 8px solid #736262;
+            right: -17px;
+            z-index: -1;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+        <p>醉花阴，睹物相思最惹人；物是人非尽涟漪</p>
+      
+    </div>
+    <button id="btn">鼠标点击事件监听</button>
+
+    <div>
+      <span>第一段内容展示</span><br/>
+      <span>雾里看花</span><br/>
+      <span>近水楼台先得月</span><br/>
+    </div>
+    
+    <div>
+      <p>真实的存在这个世界;难道这个时间是不对的存在，杀手为什么存在</p>
+      <p>如果那天，没有把该说的话</p>
+      <a>花花世界</a>
+    </div>
+    
+    <div>
+        <a href="http://www.baidu.com">百度</a><br/>
+        <a href="http://www.github.com">github</a><br/>
+        <a href="http://www.qq.com">扣扣</a><br/>
+    </div>
+
+    <div id="ff">
+      <a>WAFTURE</a>
+      <a>SUMPTUOUS</a>
+    </div>
+    
+    <div class="demo">这是一个测试</div>
+    <div class="sj"></div>
+
+    <div style="margin-left: 30px">
+        <div class="left">
+          <p>吃了吗</p>
+        </div>
+        <div class="right">
+          <p>吃过了，吃了红烧排骨和酸菜鱼</p>
+        </div>
+    </div>
+    
+  </body>
+
+  <script>
+    [...document.querySelectorAll('#container>p')].forEach(p => {
+      p.style.setProperty('--duration', p.offsetWidth / 100 + 's');
+    })
+
+
+    var fruits = function() {};
+
+    fruits.prototype = {
+        color: "red",
+        say: function() {
+            console.log("My color is " + this.color);
+        }
+    } 
+    var apple = new fruits();
+    apple.say();
+
+    var banana = {
+        color: "yellow"
+    }
+    apple.say.call(banana); //My color is yellow
+    apple.say.apply(banana); 
+
+    function log() {
+      var arr = Array.prototype.slice.apply(arguments);
+      arr.unshift("(app)");
+      console.log.apply(console,arr);
+    }
+
+    log(1,2);
+
+    var altwrite = document.write;
+    altwrite.bind(document)("hello");
+
+    document.getElementById("btn").addEventListener("click",handleClick);
+
+    function handleClick(event) {
+      console.log('garyhu', 'tag = '+event.target)
+    }
+  </script>
+</html>

@@ -26,6 +26,35 @@
         height: 500px;
         background-color: blanchedalmond
       }
+
+      .container {
+          display: none;
+          position: fixed;
+          top: 0;
+          right: 0px;
+          bottom: 0px;
+          left: 0;
+          background-color: rgba(0,0,0,.5);
+          text-align: center;
+          font-size: 0;
+          white-space: nowrap;
+          overflow: auto;
+      }
+
+      .container:after {
+          content: '';
+          display: inline-block;
+          height: 100%;
+          vertical-align: middle;
+      }
+
+      .dialog {
+          display: inline-block;
+          vertical-align: middle;
+          text-align: left;
+          font-size: 14px;
+          white-space: normal;
+      } 
     </style>
   </head>
   <body>
@@ -43,25 +72,31 @@
         <div style="width: 60px;height: 60px;background-color: #999999;" id="myDiv"></div>
       </div>
     </div>
+
+    <div class="container">
+      <div class="dialog">
+        ok
+      </div>
+    </div>
   </body>
 
   <script>
     // 事件捕获
     var div = document.getElementById("myDiv");
 
-    div.addEventListener("click", function(event) {
-        alert("event catch");
-    }, true);
-    div.addEventListener("click", function(event) {
-        alert("event bubble");
-    }, false);
+    // div.addEventListener("click", function(event) {
+    //     alert("event catch");
+    // }, true);
+    // div.addEventListener("click", function(event) {
+    //     alert("event bubble");
+    // }, false);
 
-    document.body.addEventListener("click",function(event){
-      alert("document.body bubble");
-    },false);
-    document.body.addEventListener("click",function(event){
-      alert("document.body catch");
-    },true); 
+    // document.body.addEventListener("click",function(event){
+    //   alert("document.body bubble");
+    // },false);
+    // document.body.addEventListener("click",function(event){
+    //   alert("document.body catch");
+    // },true); 
 
     // 定义一个全局的依赖收集器
     window.Dep = class Dep {
