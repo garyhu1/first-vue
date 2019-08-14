@@ -8,6 +8,26 @@
           margin: 0px;
           padding: 0px;
         }
+
+        .contant{
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                display: inline-block;
+                width:100px;
+                border:1px solid red;
+                overflow:hidden;
+
+        }
+
+        #out-line {
+          width: 200px;
+          height: 200px;
+          margin-top: 100px;
+          margin-left: 100px;
+          background-color: #FF00FF;
+          outline: 20px solid #000;
+          outline-offset: -118px;
+        }
     </style>
   </head>
   <body>
@@ -25,7 +45,11 @@
     <blockquote cite="https://codingcoach.io/">
       Coding Coach is a free, open-source platform which aims to connect software developers and mentors all over the world. It is built by a group of talented and passionate developers, designers, engineers, and humans who want to make the engineering world a better place to collaborate. This project was born out of a desire to provide a platform to connect mentors and mentees throughout the world at no cost. Coding Coach is created by the people, for the people.
     </blockquote>
-    
+    <span class="contant">
+        北京市海淀区宝盛路1号院11号楼2层205、001088854918北京市海淀区宝盛路1号院11号楼2层205、001088854918
+    </span>  
+
+    <div id="out-line"></div>
   </body>
 
   <script>
@@ -79,5 +103,93 @@
     let url = document.location.toString();
 
     alert(url);
+
+    var aa = 10;
+    aa.pro = 10;
+    console.log(aa.pro + aa);
+
+    var ss = "hello";
+    ss.pro = "world";
+    console.log(ss.pro+ss);
+
+    var xx = 1, yy = zz = 0;
+
+    function add(n) {
+      n = n + 1;
+    }
+
+    yy = add(xx);
+
+    function add(n) {
+      n = n + 3;
+    }
+
+    zz = add(xx);
+
+    console.log(xx,yy,zz);
+
+    var ii = 5;
+    function fo(){
+      var ii = 4;
+      var fi = new Function("alert(ii);")
+      fi();
+    }
+    fo();
+
+    var fqq = 1;
+    function bar1(){
+      fqq = 10;
+      return;
+      function fqq(){}
+    }
+    bar1();
+    console.log(fqq);
+
+    // 测试
+    function testLL(a) {
+      a = {
+        key: 1
+      }
+    }
+
+    var bbaa = {
+      k: 10
+    }
+
+    testLL(bbaa);
+    alert(bbaa.key)
+
+    // 测试
+    console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+    alert(test111);
+    test_11();
+    var test111 = 1;
+    function test_11() {
+      alert(10)
+    }
+    alert(test111)
+    test111 = 100;
+    test_11();
+
+
+    // 测试
+    window.val1 = 1;
+
+    var obj = {
+      val1 : 2,
+      db1: function() {
+        this.val1 *= 2;
+        val1 *= 2;
+        console.log(val1);
+        console.log(this.val1);
+      }
+    }
+
+    obj.db1();
+
+    var funcc = obj.db1;
+
+    funcc();
+
   </script>
 </html>

@@ -18,6 +18,16 @@
   </head>
   <body>
     <div id="myDiv"></div>
+
+    <div id="rm_div">
+      <p>first</p>
+      <p>second</p>
+      <p>third</p>
+    </div>
+    <div style="width: 300px;height: 1px;background-color: red;margin: 20px 0"></div>
+    <div id="add_div">
+      <p>该容器是用来添加的</p>
+    </div>
   </body>
 
   <script>
@@ -93,7 +103,72 @@
       let a = 20;
     }
 
-    getN();
+    // getN();
+
+    function Dep() {
+      this.subs = [];
+    }
+
+    Dep.prototype = {
+      addSub(sub) {
+        this.subs.push(sub);
+      },
+      notify() {
+        this.subs.foreach(sub => {
+          sub.update();
+        })
+      }
+    }
+
+    function Watcher() {
+      this.name = 'hhh'; 
+    }
+
+    Watcher.prototype = {
+      update() {
+        console.log("11");
+      }
+    }
+
+    function Observer(dep) {
+      this.dep = dep;
+    }
+
+    Observer.prototype = {
+      observe() {
+        if(Dep.target){
+          this.dep.addSub(Dep.target)
+        }
+      },
+      show() {
+        console.log(this.dep.subs);
+      }
+    }
+
+    let dep = new Dep();
+
+    let observer = new Observer(dep);
+
+    let watcher = new Watcher();
+
+    Dep.target = watcher;
+    observer.observe();
+    Dep.target = null;
+
+    observer.show();
+
+    let rmEl = document.getElementById('rm_div');
+    let addEl = document.getElementById('add_div');
+
+    let child = rmEl.firstChild;
+    console.log(child)
+    let fragment = document.createDocumentFragment();
+    while(child){
+      fragment.appendChild(child);
+      child = rmEl.firstChild;
+    }
+
+    addEl.appendChild(fragment)
 
   </script>
 </html>

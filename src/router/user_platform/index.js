@@ -4,7 +4,7 @@ export default [
     name: "name",
     component: resolve => require(["../../views/user/User.vue"], resolve),
     meta: {
-        title: "用户管理"
+      title: "用户管理"
     }
   }
 ];

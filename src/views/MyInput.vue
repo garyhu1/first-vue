@@ -28,6 +28,5 @@ export default {
             this.$emit('contentChange',val)
         }
     }
-}
+};
 </script>
-

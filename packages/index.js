@@ -1,11 +1,9 @@
 import HwText from "./hwText";
 
-const components = [
-   HwText
-];
+const components = [HwText];
 
 const install = function(Vue) {
-  if(install.installed) {
+  if (install.installed) {
     return;
   }
 
