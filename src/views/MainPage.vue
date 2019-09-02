@@ -1,6 +1,12 @@
 <<template>
     <div class="main_page">
         <div style="z-index: 2; position: absolute;left: 0;top: 0">
+            <div
+                @click="goMap"
+                style="background: #3299ea;width: 100px;height: 40px;display: flex;justify-content: center;align-items: center"
+            >
+                地图
+            </div>
             <hw-text></hw-text>
             <div id="hw-button">按钮</div>
             <my-input :editor="personal" @contentChange="changePersonal" type="text" placeholder="请输入内容"></my-input>
@@ -240,6 +246,10 @@
             },
             changePersonal(val) {
                 this.personal = val;
+            },
+
+            goMap() {
+                this.$router.push('map');
             }
         },
         beforeCreate() {

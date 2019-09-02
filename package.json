@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "2.7.2",
+    "mapbox-gl": "^1.2.1",
     "rxjs": "^6.5.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.1",

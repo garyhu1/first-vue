@@ -40,6 +40,14 @@ export default [
     }
   },
   {
+    path: "/map",
+    name: 'map',
+    component: () => import("../../views/MyMap.vue"),
+    meta: {
+      title: "地图"
+    }
+  },
+  {
     path: "/about",
     name: "about",
     // route level code-splitting

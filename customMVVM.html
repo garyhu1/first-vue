@@ -201,5 +201,33 @@
         console.log(x); // 依次输出0, 1, 1, 2, 3, ...
       }
     }
+
+
+    console.log("<----------------------------------->")
+    // 自定义call函数
+    Function.prototype.myCall = function () {
+        var ctx = arguments[0] || window;
+        ctx.fn = this;//谁调用myCall方法，this就指向谁
+        //由于使用call方法的时候，参数的个数是不确定的，但是我们现在又想执行fn方法,可以使用eval来实现
+        //也就是eval('ctx.fn(arguments[1],arguments[2]....'),这里使用一个args数组来拼接arguments[1],arguments[2].....字符串
+        var args = [];
+        for (var i = 1; i < arguments.length; i++) {
+            args.push('arguments[' + i + ']');
+        }
+        var result = eval('ctx.fn(' + args.join(',') + ')');
+        delete ctx.fn;
+        return result;
+    }
+    // 定义一个show函数
+    function show(num1, num2) {
+      console.log(this.value);
+      console.log(num1 + num2);
+    }
+
+    var obj = {
+      value: 'obj'
+    }
+
+    show.myCall(obj, 10, 100);
   </script>
 </html>

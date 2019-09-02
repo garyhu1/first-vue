@@ -18,6 +18,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
+// 引入mapbox
+import mapBoxGl from 'mapbox-gl';
+Vue.prototype.mbgl = mapBoxGl;
+
 // 获取Vue的当前版本
 console.log('garyhu', 'vue version :: '+Vue.version);
 
