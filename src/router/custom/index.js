@@ -2,7 +2,8 @@ export default [
   {
     path: "/custom",
     name: "custom",
-    component: resolve => require(["../../views/custom-component/Custom.vue"], resolve),
+    component: resolve =>
+      require(["../../views/custom-component/Custom.vue"], resolve),
     meta: {
       title: "自定义模式"
     },

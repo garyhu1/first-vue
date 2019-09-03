@@ -41,7 +41,7 @@ export default [
   },
   {
     path: "/map",
-    name: 'map',
+    name: "map",
     component: () => import("../../views/MyMap.vue"),
     meta: {
       title: "地图"

@@ -24,6 +24,18 @@ html,body {
   width: 100%;
   height: 100%;
 }
+
+body::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: #42b983
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: linear-gradient(red,orange)
+}
+
 #nav {
   padding: 30px;
   a {
