@@ -191,5 +191,27 @@
 
     funcc();
 
+    let sums = function(l1,l2){
+      // Array.prototype.reverse.call(l1);
+      // Array.prototype.reverse.call(l2);
+      l1.reverse();
+      l2.reverse();
+
+      let str1 = l1.join("");
+      let str2 = l2.join("");
+      let num1 = Number(str1);
+      let num2 = Number(str2);
+      let num = num1+num2;
+      let arr = num.toString().split("");
+      return arr;
+    }
+
+    let l1 = [3,5,1]
+    let l2 = [6,4,8]
+
+    let ar = sums(l1,l2);
+
+    console.log(ar)
+
   </script>
 </html>

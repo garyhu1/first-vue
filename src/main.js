@@ -64,7 +64,7 @@ Vue.mixin(mixin);
 // Vue DOM更新时的方法，最后执行的方法
 Vue.nextTick(function() {
   // DOM 更新了
-  console.log('garyhu', 'DOM更新了');
+  // console.log('garyhu', 'DOM更新了');
 });
 
 // 注册全局的通用的组件
