@@ -26,6 +26,7 @@ export default {
             this.showCompassAndZoom();
             this.showUserLocation();
             this.showScaleControl();
+            this.addMarkerToMap();
             // this.map.on('load', () => {
             //     // this.load3D();
             //     this.showCompassAndZoom();
@@ -96,6 +97,22 @@ export default {
             this.map.addControl(scale);
 
             scale.setUnit('metric');
+        },
+
+        /**
+         * 添加Marker
+         */
+        addMarkerToMap(){
+            let el = document.createElement("div");
+            el.className = "my_marker";
+            el.style.backgroundImage = "url(http://placekitten.com/g/60/60/)";
+            el.style.width = "60px";
+            el.style.height = "60px";
+            el.style.borderRadius = "30px";
+            let marker = new this.mbgl.Marker(el)
+                .setLngLat([116.39074, 39.91672])
+                .setOffset([0,-30])
+                .addTo(this.map)
         }
     }
 }
