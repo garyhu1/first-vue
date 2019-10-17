@@ -3,7 +3,7 @@ module.exports = {
   // outputDir: 在npm run build时 生成文件的目录 type:string, default:'dist'
   outputDir: 'dist',
   // pages:{ type:Object,Default:undfind }
-  assetsDir: "./",
+  assetsDir: "./public/",
   indexPath: "index.html",
   devServer: {
     port: 8888, // 端口号

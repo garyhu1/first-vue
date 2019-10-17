@@ -3,6 +3,7 @@ import Router from "vue-router";
 // import mainConfig from "./main";
 // import loginConfig from "./login";
 // import stickyConfig from "./sticky";
+// 测试
 
 Vue.use(Router);
 
