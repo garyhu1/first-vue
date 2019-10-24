@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>代理proxy</title>
+    <style>
+        
+    </style>
+  </head>
+  <body>
+    <button id="btn">请求数据</button>
+  </body>
+
+  <script>
+
+    let obj = {
+      name: 'Juddy'
+    }
+
+    let objWithLog = new Proxy(obj,{
+      get: function(target,key) {
+        console.log(`${key} 被读取`)
+        return target[key];
+      },
+
+      set: function(target,key,value) {
+        console.log(`${key} 被设置了 ${value}`)
+        target[key] = value;
+      }
+    })
+
+    document.getElementById("btn").onclick = () => {
+      let v = objWithLog.name;
+      objWithLog.name = "Tommy";
+      console.log(obj.name);
+    }
+
+  </script>
+</html>

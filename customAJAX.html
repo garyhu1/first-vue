@@ -83,7 +83,7 @@
         }else {
           request.open(params.method,params.url);
           request.setRequestHeader("Content-type","application/json");
-          request.send(params.data);
+          request.send(JSON.stringify(params.data));
         }
       });
 
