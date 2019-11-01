@@ -22,6 +22,11 @@ import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 import mapBoxGl from 'mapbox-gl';
 Vue.prototype.mbgl = mapBoxGl;
 
+// 引入leaflet
+import 'leaflet/dist/leaflet.css';// 引入样式文件
+import * as L from 'leaflet';
+Vue.L = Vue.prototype.$L = L;
+
 // 获取Vue的当前版本
 console.log('garyhu', 'vue version :: '+Vue.version);
 

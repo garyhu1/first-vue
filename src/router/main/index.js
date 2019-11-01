@@ -48,6 +48,14 @@ export default [
     }
   },
   {
+    path: '/leaflet',
+    name: 'leaflet',
+    component: () => import("../../views/leaflet/LMap.vue"),
+    meta: {
+      title: 'Leaflet Map'
+    }
+  },
+  {
     path: "/about",
     name: "about",
     // route level code-splitting
