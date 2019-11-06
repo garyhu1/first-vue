@@ -14,18 +14,12 @@ export default {
     },
     methods: {
         init() {
-            this.map = L.map('map');
-            L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                minZoom: 5, maxZoom: 18
-            }).addTo(this.map);
-            // 地名标注
-            // L.tileLayer("http://t{s}.tianditu.cn/cia_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=cia&tileMatrixSet=w&TileMatrix={z}&TileRow={y}&TileCol={x}&style=default&format=tiles", {
-            //     subdomains: ["0", "1", "2", "3", "4", "5", "6", "7"]
-            // }).addTo(this.map);
-            // // 边界
-            // L.tileLayer("http://t{s}.tianditu.cn/ibo_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=ibo&tileMatrixSet=w&TileMatrix={z}&TileRow={y}&TileCol={x}&style=default&format=tiles", {
-            //     subdomains: ["0", "1", "2", "3", "4", "5", "6", "7"]
-            // }).addTo(this.map);
+            this.map = L.map('map',{
+                center: [40, 100],
+                zoom: 4
+            });
+            L.tileLayer("http://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=2e877828cc2071eef8b0d84d3684db81")
+              .addTo(this.map);
         },
     },
 }
