@@ -5,7 +5,7 @@
         <p style="color: #27AE60">Mustache using : {{rawHtml}}</p>
         <p style="color: #27AE60">Using v-html directive: <span v-html="rawHtml"></span></p>
         <p style="color: #27AE60" @click="getE($event)">点击获取元素</p>
-        <slot style="color: #27AE60" name="my" :person="person">{{person.name}}</slot>
+        <slot style="color: #27AE60" name="my" :person="user">{{user.name}}</slot>
     </div>
 </template>
 
@@ -18,10 +18,10 @@ export default {
     data() {
         return {
             rawHtml: "<span style='color: red'>This should be Red!</span>",
-            person: {
+            user: {
                 name: "juddy",
                 age: 20,
-                ID: 121
+                ID: 121111234
             }
         }
     },
