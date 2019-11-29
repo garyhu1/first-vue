@@ -157,7 +157,7 @@
             this.$refs.tab1.style.backgroundColor = "rgb(125, 129, 127)";
 
             getJson().then((data) => {
-                console.log("TAG",data.personal.name);
+                console.log("TAG（mock测试）：：",data.personal.name);
             });
 
         },

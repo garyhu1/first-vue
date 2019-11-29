@@ -9,6 +9,7 @@ export const save = (data) => {
   })
 }
 
+// 该方法在MainPage.vue中测试
 export const getJson = () => {
   return httpGet({
     url: "/api/json"
