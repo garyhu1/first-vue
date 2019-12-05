@@ -1,11 +1,25 @@
 <<template>
     <div class="main_page">
         <div style="z-index: 2; position: absolute;left: 0;top: 0">
-            <div
-                @click="goMap"
-                style="background: #3299ea;width: 100px;height: 40px;display: flex;justify-content: center;align-items: center"
-            >
-                地图
+            <div style="display: flex;flex-direction: row;align-items: center;">
+                <div
+                    @click="goMap"
+                    class="first-btn"
+                >
+                    地图
+                </div>
+                <div 
+                    class="first-btn"
+                    @click="fullScreen"
+                >
+                    全屏
+                </div>
+                <div 
+                    class="first-btn"
+                    @click="exitFullScreen"
+                >
+                    退出全屏
+                </div>
             </div>
             <hw-text></hw-text>
             <div id="hw-button">按钮</div>
@@ -160,6 +174,9 @@
                 console.log("TAG（mock测试）：：",data.personal.name);
             });
 
+            // 监听全屏改变事件
+            addEventListener('resize',this.handleScreenChange);
+
         },
         filters: {
             myFilter() {
@@ -189,6 +206,42 @@
             }
         },
         methods: {
+            // 打开全屏
+            fullScreen() {
+                let el = document.documentElement;
+                let fs = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;     
+                if(fs) {
+                    fs.call(el)
+                }
+            },
+            // 退出全屏
+            exitFullScreen() {
+                if (document.exitFullscreen) {  
+                    document.exitFullscreen();  
+                }  
+                else if (document.mozCancelFullScreen) {  
+                    document.mozCancelFullScreen();  
+                }  
+                else if (document.webkitCancelFullScreen) {  
+                    document.webkitCancelFullScreen();  
+                }  
+                else if (document.msExitFullscreen) {  
+                    document.msExitFullscreen();  
+                } 
+            },
+            // 处理屏幕改变事件
+            handleScreenChange(e) {
+                console.log(e);
+            },
+            // 判断当前屏幕是否为全屏
+            checkFull() {
+                var isFull = document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document.msFullscreenEnabled;
+                //to fix : false || undefined == undefined
+                if (isFull === undefined) {
+                    isFull = false;
+                }
+                return isFull;
+            },
             changeTxt() {
                 this.app2.$emit("change",this.params);
 
@@ -445,5 +498,17 @@
         color: #FFFFFF;
         border-radius: 3px;
         cursor: pointer;
+    }
+
+    .first-btn {
+        background: #3299ea;
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        border-radius: 3px;
+        margin-right: 10px;
+        cursor: pointer;
+        color: #FFFFFF;
     }
 </style>
