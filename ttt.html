@@ -4,15 +4,20 @@
     <meta charset="utf-8">
     <title>测试</title>
     <style>
-        
+        body,html,div {
+            margin: 0;
+            padding: 0;
+        }
     </style>
   </head>
   <body>
-    <a href="http://baidu.com" id="dd" aa="okla"></a>
+    <a href="http://baidu.com" id="dd" aa="okla">ok</a>
+    <div id="content" style="font-size: 20px;color: #fff;width: 100vw;height: 90vh;background: #CCCCCC;line-height: 90vh;text-align: center"></div>
   </body>
 
   <script>
     var aDom = document.getElementById("dd");
+    let content = document.getElementById("content")
     console.log(aDom.href)
     let h = aDom.getAttribute("href");
     console.log("元素属性",h)
@@ -70,6 +75,132 @@
 
     console.log(sst.split(/\s+/))
 
+    let num = 0;
+
+    content.onmousemove = throttle2(func,1000)
+
+    function func() {
+        num++;
+        content.innerText = num
+    }
+    // 防抖函数(非立即执行)
+    function debounce1(func,wait) {
+        let timer;
+        return function() {
+            let context = this;
+            let args = arguments;
+
+            if(timer) clearTimeout(timer)
+            timer = setTimeout(() => {
+                timer = null;
+                func.call(context,...args)
+            },wait)
+        }
+    }
+
+    // 防抖函数（立即执行)
+    function debounce2(func,wait) {
+        let timer;
+        return function() {
+            let context = this;
+            let args = arguments;
+
+            if(timer) clearTimeout(timer)
+
+            let isImmediately = timer ? false : true;
+            if(isImmediately) {
+                func.call(context,...args);
+            }
+
+            timer = setTimeout(() => {
+                timer = null;
+            },wait)
+        }
+    }
+
+    // 防抖函数综合版本
+    function debounce(func,wait,immediate) {
+        let timer;
+        return function() {
+            let context = this;
+            let args = arguments;
+
+            if(timer) clearTimeout(timer)
+            if(immediate) {
+                let isImmediately = timer ? false : true;
+                if(isImmediately) {
+                    func.call(context,...args);
+                }
+
+                timer = setTimeout(() => {
+                    timer = null;
+                },wait)
+            }else {
+                timer = setTimeout(() => {
+                    timer = null;
+                    func.call(context,...args)
+                },wait)
+            }
+        }
+    }
+
+    // 节流函数（时间间隔）
+    function throttle1(func,wait) {
+        let last = 0;
+        return function() {
+            let now = Date.now();
+            let context = this;
+            let args = arguments;
+
+            if(now - last > wait) {
+                func.call(context,...args)
+                last = now;
+            }
+        }
+    }
+
+    // 节流函数（定时器）
+    function throttle2(func,wait) {
+        let timer ;
+        return function() {
+            let context = this;
+            let args = arguments;
+
+            if(!timer) {
+                timer = setTimeout(() => {
+                    func.call(context,...args)
+                    timer = null;
+                },wait)
+            }
+        }
+    }
+
+    // 节流函数综合版(1表示时间间隔类型)
+    function throttle(func,wait,type = 1) {
+        let timer;
+        if(type === 1) {
+            timer = 0;
+        }
+
+        return function() {
+            let context = this;
+            let args = arguments;
+
+            if(type === 1) {
+                let now = Date.now();
+                if(now - timer > wait) {
+                    func.call(context,...args);
+                    last = now;
+                } 
+            }else {
+                if(!timer) {
+                    timer = setTimeout(() => {
+                        func.call(context,...args)
+                    },wait)
+                }
+            }
+        }
+    } 
     
   </script>
 </html>
