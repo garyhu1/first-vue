@@ -20,6 +20,12 @@
                 >
                     退出全屏
                 </div>
+                <div 
+                    class="first-btn"
+                    @click="myPromise"
+                >
+                    MyPromise
+                </div>
             </div>
             <hw-text></hw-text>
             <div id="hw-button">按钮</div>
@@ -228,6 +234,10 @@
                 else if (document.msExitFullscreen) {  
                     document.msExitFullscreen();  
                 } 
+            },
+            // 测试自定Promise
+            myPromise() {
+                this.$router.push('./promise')
             },
             // 处理屏幕改变事件
             handleScreenChange(e) {

@@ -67,6 +67,18 @@ export default [
       title: "关于"
     }
   },
+  {
+    path: "/promise",
+    name: "promise",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../../views/MyPromise.vue"),
+    meta: {
+      title: "Promise"
+    }
+  },
   // 匹配不到时默认返回404页面
   {
     path: "*",

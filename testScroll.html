@@ -272,5 +272,27 @@
     function handleClick(event) {
       console.log('garyhu', 'tag = '+event.target)
     }
+
+    Function.prototype.myCall = function(context) {
+      context = context || window;
+      context.fn = this;
+      console.log(this)
+      let args = [];
+      let len = arguments.length;
+      for(let i = 1;i < len;i++) {
+          args.push(arguments[i]);
+      }
+
+      let result = context.fn(...args);
+      delete context.fn;
+      return result;
+    }
+
+    function getName(name,age) {
+      console.log("name: "+name+", age: "+age)
+    }
+
+    getName.myCall(null,"Juddy",10);
+
   </script>
 </html>
