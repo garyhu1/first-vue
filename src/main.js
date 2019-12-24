@@ -87,9 +87,9 @@ const requireComponent = require.context(
 
 requireComponent.keys().forEach(fileName => {
   // 获取组件配置
-  console.log('TAG', 'fileName = '+fileName);
+  // console.log('TAG', 'fileName = '+fileName);
   const componentConfig = requireComponent(fileName);
-  console.log('TAG', 'componentConfig name = '+componentConfig.default.name);
+  // console.log('TAG', 'componentConfig name = '+componentConfig.default.name);
 
   // 获取组件的 PascalCase 命名
   const componentName = upperFirst(
@@ -121,7 +121,7 @@ router.beforeEach((to, from, next) => {
       next();
     } else {
       let path = to.path;
-      console.log("tag", "currentPath ==> " + path);
+      // console.log("tag", "currentPath ==> " + path);
       store.commit("setRouterPath", path);
       next("/login");
     }
@@ -133,7 +133,7 @@ router.beforeEach((to, from, next) => {
 
 // 长页面跳转自动返回顶端
 router.afterEach((to, from) => {
-  console.log('tag', '跳转');
+  // console.log('tag', '跳转');
   let bodySrcollTop = document.body.scrollTop
   if (bodySrcollTop !== 0) {
     document.body.scrollTop = 0;

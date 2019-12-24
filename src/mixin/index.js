@@ -2,11 +2,11 @@
 
 const mixin = {
   created() {
-    console.log("garyhu", "每个组件创建都会打印");
+    // console.log("garyhu", "每个组件创建都会打印");
   },
   methods: {
     success() {
-      console.log("garyhu", "success");
+      // console.log("garyhu", "success");
     }
   }
 };

@@ -201,6 +201,18 @@
             }
         }
     } 
+
+    let name = "张三";
+
+    function getUsername() {
+        this.name = "Tommy";
+        hello = function() {
+            console.log(this.name);
+        }
+        return this;
+    }
+
+    getUsername().hello();
     
   </script>
 </html>

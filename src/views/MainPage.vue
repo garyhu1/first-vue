@@ -1,4 +1,4 @@
-<<template>
+<template>
     <div class="main_page">
         <div style="z-index: 2; position: absolute;left: 0;top: 0">
             <div style="display: flex;flex-direction: row;align-items: center;">
@@ -59,7 +59,7 @@
 
             <div id="main_cula" v-show="isShowCal">
                 <h1>学科计分器</h1>
-                <div v-for="subject in results" class="subject">
+                <div v-for="subject in results" class="subject" :key="subject.name">
                     <input v-model="subject.marks" />
                     <span>{{ subject.name }}得分: {{ subject.marks }}</span>
                 </div>
@@ -146,8 +146,8 @@
         // },
         // 路由更新时的钩子函数
         beforeRouteUpdate(to,from,next) {
-            console.log('garyhu', 'route to :: '+to.params.username);
-            console.log('garyhu', 'route from :: '+from.params.username);
+            // console.log('garyhu', 'route to :: '+to.params.username);
+            // console.log('garyhu', 'route from :: '+from.params.username);
             next();
 
         },
@@ -156,12 +156,20 @@
             // window.localStorage.removeItem("token");
             next();
         },
+        render(h) { // 因为有template，所以该函数不会执行
+            console.log("渲染")
+            return (
+                <div>
+                    <span>fuck</span>
+                </div>
+            )
+        },
         mounted() {
             // 测试打印自定义的属性
-            console.log('garyhu', 'vue option :: '+this.$options.customO);
-            console.log('garyhu', 'vue parent :: '+this.$parent);
-            console.log('garyhu', 'vue child :: '+this.$children);
-            console.log('garyhu', 'vue version :: '+this.$version);
+            // console.log('garyhu', 'vue option :: '+this.$options.customO);
+            // console.log('garyhu', 'vue parent :: '+this.$parent);
+            // console.log('garyhu', 'vue child :: '+this.$children);
+            // console.log('garyhu', 'vue version :: '+Vue.version);
 
             this.app2.$on("change",(mm) => {
                 this.luck = mm.luck
@@ -319,33 +327,33 @@
             // 初始化 inject
             // 初始化 props、methods、data、computed 和 watch
             // 初始化 provide
-            console.group('------beforeCreate创建前状态------');
-            console.log("%c%s", "color:red","data   : " + this.$data); //undefined 
+            // console.group('------beforeCreate创建前状态------');
+            // console.log("%c%s", "color:red","data   : " + this.$data); //undefined 
         },
         created() {
             // 挂载实例 vm.$mount(vm.$options.el)
-            console.group('------created创建完毕状态------');
-            console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化 
+            // console.group('------created创建完毕状态------');
+            // console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化 
         },
         beforeMount() {
-            console.group('------beforeMount挂载前状态------');
-            console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化  
+            // console.group('------beforeMount挂载前状态------');
+            // console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化  
         },
         beforeUpdate() {
-            console.group('beforeUpdate 更新前状态===============》');
-            console.log("%c%s", "color:red","data   : " + this.$data); 
+            // console.group('beforeUpdate 更新前状态===============》');
+            // console.log("%c%s", "color:red","data   : " + this.$data); 
         },
         updated() {
-            console.group('updated 更新完成状态===============》');
-            console.log("%c%s", "color:red","data   : " + this.$data); 
+            // console.group('updated 更新完成状态===============》');
+            // console.log("%c%s", "color:red","data   : " + this.$data); 
         },
         beforeDestroy() {
-            console.group('beforeDestroy 销毁前状态===============》');
-            console.log("%c%s", "color:red","data   : " + this.$data); 
+            // console.group('beforeDestroy 销毁前状态===============》');
+            // console.log("%c%s", "color:red","data   : " + this.$data); 
         },
         destroyed() {
-            console.group('destroyed 销毁完成状态===============》');
-            console.log("%c%s", "color:red","data   : " + this.$data); 
+            // console.group('destroyed 销毁完成状态===============》');
+            // console.log("%c%s", "color:red","data   : " + this.$data); 
         },
         watch: {
             price(val, oldVal) {

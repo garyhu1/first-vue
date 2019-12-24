@@ -1,4 +1,5 @@
 import axios from 'axios'
+import qs from 'qs';
 
 // 环境的切换
 if (process.env.NODE_ENV === 'development') {
@@ -12,6 +13,12 @@ axios.interceptors.request.use(
   config => {
     let token = window.localStorage.getItem("token");  
     token && (config.headers.Authorization = token)
+    // 处理get请求传递数组
+    if(config.method === 'get'){
+      config.paramsSerializer = (params) => {
+        return qs.stringify(params, { arrayFormat: 'repeat' });
+      }
+    }
     return config
   },
   error => {
