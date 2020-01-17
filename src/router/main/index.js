@@ -79,6 +79,16 @@ export default [
       title: "Promise"
     }
   },
+  {
+    path: '/chart',
+    name: 'chart',
+    component: () => import('../../views/MyEChart.vue')
+  },
+  {
+    path: '/canvas',
+    name: 'canvas',
+    component: () => import('../../views/Canvas.vue')
+  },
   // 匹配不到时默认返回404页面
   {
     path: "*",

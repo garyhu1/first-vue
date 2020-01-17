@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <title>测试</title>
     <style>
         body,html,div {
@@ -16,6 +17,13 @@
   </body>
 
   <script>
+    let docEl = document.documentElement;
+    let meta = docEl.querySelector("meta[name='viewport'");
+    let match = meta.getAttribute("content").match(/initial\-scale=([\d\.]+)/);
+    console.log(match);
+    console.log(parseFloat(match[1]))
+    console.log(docEl.firstElementChild)// head标签
+
     var aDom = document.getElementById("dd");
     let content = document.getElementById("content")
     console.log(aDom.href)
@@ -213,6 +221,27 @@
     }
 
     getUsername().hello();
+
+    // 实现一个bind函数
+    Function.prototype.bind = function(obj,arg) {
+        let args = Array.prototype.slice.call(arguments,1);
+        let context = this;
+        let bound = function(newArg) {
+            args = args.concat(Array.prototype.slice.call(newArg));
+            return context.apply(obj,args);
+        }
+
+        let F = function() {};
+
+        F.prototype = context.prototype;
+
+        bound.prototype = new F();
+        return bound;
+    }
+
+    let att = ["1","2","3"];
+    let taa = ["1","2","3"].map(parseInt);
+    console.log(taa)
     
   </script>
 </html>
