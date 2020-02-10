@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "echarts": "^4.6.0",
     "element-ui": "2.7.2",
     "leaflet": "^1.5.1",
     "mapbox-gl": "^1.2.1",
