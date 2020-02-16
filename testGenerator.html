@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>测试生成器</title>
+    <style>
+        body,html,div {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+  </head>
+  <body>
+  </body>
+
+  <script>
+    function* gen() {
+        console.log("enter");
+        let a = yield 1;
+        let b = yield (function () {return 2})();
+        return 3;
+    }
+
+    //let g = gen();
+    //console.log(g.next());
+    //console.log(g.next());
+
+    function* A() {
+        console.log("我是A");
+        yield B(); // A停住，在这里转交线程执行权给B
+        console.log("结束了");
+    }
+    function B() {
+        console.log("我是B");
+        return 100;// 返回，并且将线程执行权还给A
+    }
+    
+    let gene = A();
+    console.log(gene.next());
+    //gen.next();
+    
+  </script>
+</html>
